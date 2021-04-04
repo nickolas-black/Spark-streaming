@@ -1,0 +1,34 @@
+CASSANDRA:
+
+/cassandra/bin/cassandra #(находясь на worker2 - запускает базу, если она упала)
+
+/cassandra/bin/cqlsh 10.0.0.18 #(подключиться к касандре через консоль)
+
+#создать схему
+CREATE  KEYSPACE  filkin
+   WITH REPLICATION = {
+      'class' : 'SimpleStrategy', 'replication_factor' : 1 } ;
+
+CREATE TABLE habr_users
+(author_id bigint,
+author_name text,
+author_type text,
+primary key (author_id));
+
+CREATE TABLE habr_recs
+(title text,
+link text,
+published_date text,
+published_time text,
+description text,
+image text,
+article_categories text,
+tags text,
+class text,
+author_id bigint,
+author_name text,
+author_type text,
+primary key (link));
+
+
+
